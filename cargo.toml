@@ -1,0 +1,29 @@
+[package]
+name = "waicheck-firmware"
+version = "0.1.0"
+edition = "2021"
+authors = ["Liam Watson", "Kevin Lo"]
+description = "Bare-metal async Rust firmware for the WaiCheck solar river monitor"
+
+[dependencies]
+esp-hal = { version = "0.22", features = ["esp32"] }
+esp-hal-embassy = { version = "0.5", features = ["esp32"] }
+esp-wifi = { version = "0.11", features = ["esp32", "wifi", "embassy-net", "utils"] }
+esp-alloc = "0.5"
+esp-backtrace = { version = "0.14", features = ["esp32", "panic-handler", "println"] }
+esp-println = { version = "0.12", features = ["esp32", "log"] }
+
+embassy-executor = "0.6"
+embassy-time = "0.3"
+embassy-net = { version = "0.5", features = ["tcp", "dns", "dhcpv4", "medium-ethernet"] }
+reqwless = { version = "0.13", features = ["embedded-tls"] }
+heapless = "0.8"
+static_cell = "2.1"
+log = "0.4"
+nb = "1.1"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+debug = false
